@@ -9,11 +9,11 @@
         private $password;
 
         public function __construct() {
-            $this->username = getenv('USERNAME');
-            $this->password = getenv('PASSWORD');
-            $this->dbname = getenv('DBNAME');
-            $this->host = getenv('HOST');
-            $this->port = getenv('PORT');
+            $this->username = getenv('DB_USER');
+            $this->password = getenv('DB_PASSWORD');
+            $this->dbname = getenv('DB_NAME');
+            $this->host = getenv('DB_HOST');
+            $this->port = getenv('DB_PORT');
         }
         
 
@@ -24,6 +24,8 @@
                 return $this->conn;
             } else {
                 $dsn = "pgsql:host={$this->host};port={$this->port};dbname={$this->dbname}";
+
+                
 
                 try {
                     $this->conn = new PDO($dsn, $this->username, $this->password);
