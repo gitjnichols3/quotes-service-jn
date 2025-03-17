@@ -13,7 +13,7 @@
             $this->password = getenv('DB_PASSWORD');
             $this->dbname = getenv('DB_NAME');
             $this->host = getenv('DB_HOST');
-            $this->port = getenv('DB_PORT');
+            $this->port = getenv('PORT');
         }
         
 
