@@ -75,39 +75,7 @@
             // Execute query
             $stmt->execute();
 
-            // Check if any record was found
-            $num = $stmt->rowCount();
-
-            if($num > 0){
-
-                // Fetch array
-                $row = $stmt->fetch(PDO::FETCH_ASSOC);
-
-                // Set Properties
-                $this->quote = $row['quote'];
-                $this->author_id = $row['author_id'];
-                $this->author = $row['author'];
-                $this->category_id = $row['category_id'];
-                $this->category = $row['category'];
-
-                //Create array
-                $quote_arr = array(
-                    'id' => $quote->id,
-                    'quote' => $quote->quote,
-                // 'author_id' => $quote->author_id,
-                    'author' => $quote->author,
-                // 'category_id' => $quote->category_id,
-                    'category' => $quote->category
-                );
-
-                //Make JSON
-                print_r(json_encode($quote_arr));
-
-            } else {
-                echo json_encode(
-                    array("message" => "No Quotes Found")
-                );
-            }
+            return $stmt;
         }
 
        // Create Quote 
