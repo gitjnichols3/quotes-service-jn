@@ -78,7 +78,9 @@
             // Fetch array
             $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
-            if($num > 0){
+
+
+            if($row){
 
                 // Set Properties
                 $this->quote = $row['quote'];
