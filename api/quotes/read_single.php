@@ -20,7 +20,7 @@
     // Get post
     $result = $quote->read_single();
      // Get row count
-    $num = $result->rowCount();
+     $num = $result->rowCount();
 
     // Check if any posts
     if($num > 0){
@@ -43,9 +43,9 @@
             // Push to "data"
             array_push($quotes_array['data'], $quote_item);
         }
-        $singleObject = $quotes_array[0];
+
         //Turn to JSON & output
-        echo json_encode($singleObject);
+        echo json_encode($quotes_array['data'][0]);
 
     }else{
         // No quotes
