@@ -17,13 +17,36 @@
     $category->id = isset($_GET['id']) ? $_GET['id'] : die();
 
     // Get category
-    $category->read_single();
+    $result = $category->read_single();
 
-    //Create array
-    $category = array(
-        'id'=> $category->id,
-        'category'=> $category->category
-    );
+    // Get row count
+    $num = $result->rowCount();
 
-    //Make JSON
-    print_r(json_encode($category));
+    // Check if any posts
+    if($num > 0){
+        //Category array
+        $categories_arr = array();
+        $categories_array['data'] = array();
+
+        while($row = $result->fetch(PDO::FETCH_ASSOC)){
+            extract($row);
+
+            $category_item = array(
+                'id' => $id,
+                'category' => $category,
+            );
+
+            // Push to "data"
+            array_push($categories_array['data'], $category_item);
+        }
+
+        //Turn to JSON & output
+        echo json_encode($categories_array['data'][0]);
+
+    }else{
+        // No quotes
+        echo json_encode(
+            array('message' => 'category_id Not Found')
+        );
+
+    }

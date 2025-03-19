@@ -31,7 +31,7 @@
         while($row = $result->fetch(PDO::FETCH_ASSOC)){
             extract($row);
 
-            $authors_item = array(
+            $author_item = array(
                 'id' => $id,
                 'author' => $author,
             );
@@ -46,7 +46,7 @@
     }else{
         // No quotes
         echo json_encode(
-            array('message' => 'No Authors Found')
+            array('message' => 'author_id Not Found')
         );
 
     }

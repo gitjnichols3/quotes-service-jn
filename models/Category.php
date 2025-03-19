@@ -55,11 +55,7 @@
             // Execute query
             $stmt->execute();
 
-            // Fetch array
-            $row = $stmt->fetch(PDO::FETCH_ASSOC);
-
-            // Set Properties
-            $this->category = $row['category'];
+            return $stmt;
         }
 
        // Create Category 
