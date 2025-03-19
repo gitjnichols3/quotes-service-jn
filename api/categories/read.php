@@ -37,7 +37,7 @@
         }
 
         //Turn to JSON & output
-        echo json_encode($categories_array);
+        echo json_encode($categories_array['data']);
 
     }else{
         // No Categories

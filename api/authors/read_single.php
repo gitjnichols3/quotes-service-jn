@@ -17,13 +17,36 @@
     $author->id = isset($_GET['id']) ? $_GET['id'] : die();
 
     // Get author
-    $author->read_single();
+    $result = $author->read_single();
 
-    //Create array
-    $author_arr = array(
-        'id'=> $author->id,
-        'author'=> $author->author
-    );
+    // Get row count
+    $num = $result->rowCount();
 
-    //Make JSON
-    print_r(json_encode($author_arr));
+    // Check if any posts
+    if($num > 0){
+        //Author array
+        $authors_arr = array();
+        $authors_array['data'] = array();
+
+        while($row = $result->fetch(PDO::FETCH_ASSOC)){
+            extract($row);
+
+            $authors_item = array(
+                'id' => $id,
+                'author' => $author,
+            );
+
+            // Push to "data"
+            array_push($authors_array['data'], $author_item);
+        }
+
+        //Turn to JSON & output
+        echo json_encode($authors_array['data'][0]);
+
+    }else{
+        // No quotes
+        echo json_encode(
+            array('message' => 'No Authors Found')
+        );
+
+    }

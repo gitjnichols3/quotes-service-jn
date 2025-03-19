@@ -55,11 +55,8 @@
             // Execute query
             $stmt->execute();
 
-            // Fetch array
-            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+            return $stmt;
 
-            // Set Properties
-            $this->author = $row['author'];
         }
 
        // Create Author 
