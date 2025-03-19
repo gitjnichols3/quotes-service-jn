@@ -88,6 +88,8 @@
                 $this->author = $row['author'];
                 $this->category_id = $row['category_id'];
                 $this->category = $row['category'];
+            } else {
+                return false;
             }
         }
 
