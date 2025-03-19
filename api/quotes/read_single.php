@@ -30,7 +30,12 @@
                 'category' => $quote->category
             );
 
+            if ($quote_arr->quote == null){
+                $response = array("message" => "No Quotes Found");
+                echo json_encode($response);
+            }else{
             //Make JSON
             print_r(json_encode($quote_arr));
+            }
     
 
