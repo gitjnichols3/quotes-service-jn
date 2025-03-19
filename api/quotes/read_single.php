@@ -43,9 +43,9 @@
             // Push to "data"
             array_push($quotes_array['data'], $quote_item);
         }
-
+        $singleObject = $quotes_array[0];
         //Turn to JSON & output
-        echo json_encode($quotes_array['data']);
+        echo json_encode($singleObject);
 
     }else{
         // No quotes
