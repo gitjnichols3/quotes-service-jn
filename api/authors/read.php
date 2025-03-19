@@ -37,7 +37,7 @@
         }
 
         //Turn to JSON & output
-        echo json_encode($authors_array);
+        echo json_encode($authors_array['data']);
 
     }else{
         // No Authors
