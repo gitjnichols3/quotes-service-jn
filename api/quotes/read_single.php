@@ -17,7 +17,7 @@
     $quote->id = isset($_GET['id']) ? $_GET['id'] : die();
 
     // Get post
-    $quote->read_single();
+    $result = $quote->read_single();
 
     // Get row count
     $num = $result->rowCount();
