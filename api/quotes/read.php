@@ -41,7 +41,7 @@
         }
 
         //Turn to JSON & output
-        echo json_encode($quotes_array);
+        echo json_encode($quotes_array['data']);
 
     }else{
         // No quotes
