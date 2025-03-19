@@ -20,10 +20,10 @@
     $result = $quote->read_single();
 
     // Get row count
-    //$num = $result->rowCount();
+    $num = $result->rowCount();
 
     // Check if any posts
-    if($result){
+    if($num > 0){
 
         //Create array
         $quote_arr = array(
