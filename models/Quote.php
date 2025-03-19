@@ -88,10 +88,6 @@
                 $this->author = $row['author'];
                 $this->category_id = $row['category_id'];
                 $this->category = $row['category'];
-            }else{
-                echo json_encode(
-                    array('message' => 'No Quotes Found')
-                );
             }
         }
 
