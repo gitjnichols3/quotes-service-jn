@@ -18,16 +18,8 @@
     $quote->id = isset($_GET['id']) ? $_GET['id'] : die();
 
     // Get post
-    $result = $quote->read_single();
-    echo $result;
-
-    if ($result){
-        // Get row count
-        $num = $result->rowCount();
-
-        // Check if any posts
-        if($num > 0){
-
+    $quote->read_single();
+    
             //Create array
             $quote_arr = array(
                 'id' => $quote->id,
@@ -40,13 +32,5 @@
 
             //Make JSON
             print_r(json_encode($quote_arr));
-        
-        } else {
-            // No quotes
-            echo json_encode(
-                array('message' => 'No Quotes Found')
-            );
-
-        }
-    } 
+    
 
