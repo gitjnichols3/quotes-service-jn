@@ -19,15 +19,29 @@
     // Get post
     $quote->read_single();
 
-    //Create array
-    $quote_arr = array(
-        'id' => $quote->id,
-        'quote' => $quote->quote,
-       // 'author_id' => $quote->author_id,
-        'author' => $quote->author,
-       // 'category_id' => $quote->category_id,
-        'category' => $quote->category
-    );
+    // Get row count
+    $num = $result->rowCount();
 
-    //Make JSON
-    print_r(json_encode($quote_arr));
+    // Check if any posts
+    if($num > 0){
+
+        //Create array
+        $quote_arr = array(
+            'id' => $quote->id,
+            'quote' => $quote->quote,
+        // 'author_id' => $quote->author_id,
+            'author' => $quote->author,
+        // 'category_id' => $quote->category_id,
+            'category' => $quote->category
+        );
+
+        //Make JSON
+        print_r(json_encode($quote_arr));
+    
+    } else {
+        // No quotes
+        echo json_encode(
+            array('message' => 'No Quotes Found')
+        );
+
+    }
