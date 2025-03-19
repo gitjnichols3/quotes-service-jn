@@ -8,9 +8,9 @@
         public $id;
         public $quote;
         public $author_id;
-        public $author_name;
+        public $author;
         public $category_id;
-        public $category_name; 
+        public $category; 
 
         // Constructor with DB
         public function __construct($db) {
@@ -22,8 +22,8 @@
         public function read() {
             // Create query
             $query = 'SELECT 
-                    c.category as category_name,
-                    a.author as author_name,
+                    c.category as category,
+                    a.author as author,
                     q.id, 
                     q.category_id,
                     q.quote,
@@ -50,8 +50,8 @@
 
         public function read_single(){
             $query = 'SELECT 
-                    c.category as category_name,
-                    a.author as author_name,
+                    c.category as category,
+                    a.author as author,
                     q.id, 
                     q.category_id,
                     q.quote,
@@ -81,9 +81,9 @@
             // Set Properties
             $this->quote = $row['quote'];
             $this->author_id = $row['author_id'];
-            $this->author_name = $row['author_name'];
+            $this->author = $row['author'];
             $this->category_id = $row['category_id'];
-            $this->category_name = $row['category_name'];
+            $this->category = $row['category'];
         }
 
        // Create Quote 
