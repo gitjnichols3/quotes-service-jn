@@ -83,8 +83,7 @@
         public function create() {
             // PostgreSQL-compatible INSERT query
             $query = 'INSERT INTO ' . $this->table . ' (quote, author_id, category_id) 
-                    VALUES (:quote, :author_id, :category_id)
-                    RETURNING *';
+                    VALUES (:quote, :author_id, :category_id)';
 
             // Prepare statement
             $stmt = $this->conn->prepare($query);
@@ -101,10 +100,6 @@
 
             // Execute query
             if ($stmt->execute()) {
-                // Fetch the inserted record
-                $new_record = $stmt->fetch();
-                print_r($new_record);
-                
                 return true;
             }
 
