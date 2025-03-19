@@ -31,9 +31,9 @@
                 'id' => $id,
                 'quote' => $quote,
                 'author_id' => $author_id,
-                'author_name' => $author_name,
+                'author' => $author,
                 'category_id' => $category_id,
-                'category_name' => $category_name
+                'category' => $category
             );
 
             // Push to "data"
