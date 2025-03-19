@@ -75,12 +75,13 @@
             // Execute query
             $stmt->execute();
 
-            // Fetch array
-            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+            // Check if any record was found
+            $num = $stmt->rowCount();
 
+            if($num > 0){
 
-
-            if($row){
+                // Fetch array
+                $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
                 // Set Properties
                 $this->quote = $row['quote'];
@@ -89,7 +90,9 @@
                 $this->category_id = $row['category_id'];
                 $this->category = $row['category'];
             } else {
-                return false;
+                echo json_encode(
+                    array("message" => "No Quotes Found")
+                );
             }
         }
 
