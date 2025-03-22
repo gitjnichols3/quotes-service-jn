@@ -102,9 +102,7 @@
             // Execute query
             if ($stmt->execute()) {
                 $newRecord = $stmt->fetch(PDO::FETCH_ASSOC);
-                echo json_encode([
-                    'data' => $newRecord
-                ]);
+                echo json_encode($newRecord);
                 return true;
             }
 
