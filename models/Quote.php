@@ -84,7 +84,7 @@
             // PostgreSQL-compatible INSERT query
             $query = 'INSERT INTO ' . $this->table . ' (quote, author_id, category_id) 
                     VALUES (:quote, :author_id, :category_id)
-                    returning id, quote, author_id and category_id';
+                    RETURNING id, quote, author_id, category_id';
 
             // Prepare statement
             $stmt = $this->conn->prepare($query);
