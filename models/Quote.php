@@ -110,7 +110,7 @@
                 // Check for foreign key violation (SQLSTATE 23503)
                 if ($e->getCode() == '23503') {
                     echo json_encode([
-                        "message" => "author_id Not Found."
+                        "message" => "author_id Not Found"
                     ]);
                     exit;
                 } else {
