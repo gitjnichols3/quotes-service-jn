@@ -38,7 +38,7 @@
         exit;
     }
 
-    $author->category = $data['category'];
+    $category->category = $data['category'];
 
 
     $category->create();
