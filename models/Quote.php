@@ -91,7 +91,7 @@
         }
 
         try {
-            $stmt = $this->pdo->prepare(
+            $stmt = $this->conn->prepare(
                 "INSERT INTO quotes (quote, author_id, category_id) 
                  VALUES (:quote, :author_id, :category_id) 
                  RETURNING id, quote, author_id, category_id"
