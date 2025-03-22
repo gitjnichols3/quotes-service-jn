@@ -151,13 +151,13 @@
                 quote = :quote,
                 author_id = :author_id,
                 category_id = :category_id
+            WHERE
+                id = :id
             RETURNING
                 id,
                 quote,
                 author_id,
-                category_id
-            WHERE
-                id = :id';
+                category_id';
 
         //Prepare statement
         $stmt = $this->conn->prepare($query);
