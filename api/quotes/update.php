@@ -43,6 +43,22 @@
     $quote->author_id = $data['author_id'];
     $quote->category_id = $data['category_id'];
 
+    
+    // **Check if the quote record exists before attempting to update**
+    $checkQuery = 'SELECT id FROM ' . $quote->table . ' WHERE id = :id LIMIT 1';
+    $stmt = $db->prepare($checkQuery);
+    $stmt->bindParam(':id', $quote->id, PDO::PARAM_INT);
+    $stmt->execute();
+
+    // If the record does not exist, return a "Record not found" message
+    if ($stmt->rowCount() == 0) {
+        echo json_encode([
+            'message' => 'No Quotes Found'
+        ]);
+        exit; // Stop execution as the record does not exist
+    }
+
+
 
 /*
     // Get raw posted data
