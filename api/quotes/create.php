@@ -21,6 +21,8 @@
     $quote->quote = $data->quote;
     $quote->author_id = $data->author_id;
     $quote->category_id = $data->category_id;
+
+    $quote->create();
 /*
     // Create quote
     if($quote->create()) {
