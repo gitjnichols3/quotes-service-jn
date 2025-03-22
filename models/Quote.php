@@ -169,6 +169,48 @@
         $stmt->bindParam(':category_id', $this->category_id);
         $stmt->bindParam(':id', $this->id);
 
+
+        // Execute query
+        try{
+            if ($stmt->execute()) {
+                $newRecord = $stmt->fetch(PDO::FETCH_ASSOC);
+                echo json_encode($newRecord, JSON_PRETTY_PRINT);
+                return true;
+            }
+        } catch (PDOException $e) {
+            // Check for foreign key violation (SQLSTATE 23503)
+            if ($e->getCode() == '23503') {
+
+                //copy error into variable
+                $errorMessage = $e->getMessage();
+
+                //test variable to see which foregin key was violated
+                if (strpos($errorMessage, 'quotes_author_id_fkey') !== false) {
+                    echo json_encode(["message" => "author_id Not Found"]);
+                } else if (strpos($errorMessage, 'quotes_category_id_fkey') !== false) {
+                    echo json_encode(["message" => "category_id Not Found"]);
+                } else {
+                        echo json_encode(["message" => "Foreign key constraint violated"]);
+                }
+
+                exit;
+            } else {
+                // General database error
+                echo json_encode([
+                    "error" => "Database error",
+                    "message" => $e->getMessage()
+                ]);
+                exit;
+            }
+        }
+
+        // Print error
+        printf("Error: %s.\n", $stmt->errorInfo()[2]);
+
+        return false;
+    }
+
+        /*
         //Execute query
         if($stmt->execute()){
             return true;
@@ -178,6 +220,13 @@
 
         return false;
         }
+
+        */
+
+
+
+
+
 
         //Delete Quote
         public function delete() {
@@ -192,6 +241,7 @@
 
         //Bind id
         $stmt->bindParam(':id', $this->id);
+
 
          //Execute query
          if($stmt->execute()){
