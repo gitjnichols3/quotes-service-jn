@@ -100,9 +100,10 @@
             $stmt->bindParam(':category_id', $this->category_id, PDO::PARAM_INT);
 
             // Execute query
+            
             if ($stmt->execute()) {
                 $newRecord = $stmt->fetch(PDO::FETCH_ASSOC);
-                echo json_encode($newRecord);
+                echo json_encode($newRecord, JSON_PRETTY_PRINT);
                 return true;
             }
 
