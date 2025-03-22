@@ -22,6 +22,9 @@
     $author->id = $data->id;
     $author->author = $data->author;
 
+    $author->update();
+
+    /*
     // update author
     if($author->update()) {
         echo json_encode(
@@ -33,3 +36,4 @@
         );
     }
     
+*/
