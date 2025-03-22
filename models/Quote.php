@@ -100,11 +100,25 @@
             $stmt->bindParam(':category_id', $this->category_id, PDO::PARAM_INT);
 
             // Execute query
-            
-            if ($stmt->execute()) {
-                $newRecord = $stmt->fetch(PDO::FETCH_ASSOC);
-                echo json_encode($newRecord, JSON_PRETTY_PRINT);
-                return true;
+            try{
+                if ($stmt->execute()) {
+                    $newRecord = $stmt->fetch(PDO::FETCH_ASSOC);
+                    echo json_encode($newRecord, JSON_PRETTY_PRINT);
+                    return true;
+                }
+            } catch (PDOException $e) {
+                // Check for foreign key violation (SQLSTATE 23503)
+                if ($e->getCode() == '23503') {
+                    echo json_encode([
+                        "message" => "author_id Not Found."
+                    ]);
+                } else {
+                    // General database error
+                    echo json_encode([
+                        "error" => "Database error",
+                        "message" => $e->getMessage()
+                    ]);
+                }
             }
 
             // Print error
