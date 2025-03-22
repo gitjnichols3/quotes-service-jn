@@ -112,12 +112,14 @@
                     echo json_encode([
                         "message" => "author_id Not Found."
                     ]);
+                    exit;
                 } else {
                     // General database error
                     echo json_encode([
                         "error" => "Database error",
                         "message" => $e->getMessage()
                     ]);
+                    exit;
                 }
             }
 
