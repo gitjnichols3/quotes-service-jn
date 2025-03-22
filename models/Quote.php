@@ -151,6 +151,11 @@
                 quote = :quote,
                 author_id = :author_id,
                 category_id = :category_id
+            RETURNING
+                id,
+                quote,
+                author_id,
+                category_id
             WHERE
                 id = :id';
 
@@ -174,7 +179,7 @@
         try{
             if ($stmt->execute()) {
                 $newRecord = $stmt->fetch(PDO::FETCH_ASSOC);
-                echo json_encode($newRecord);
+                echo json_encode($newRecord, JSON_PRETTY_PRINT);
                 return true;
             }
         } catch (PDOException $e) {
