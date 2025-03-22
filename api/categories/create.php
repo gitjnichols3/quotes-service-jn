@@ -18,7 +18,28 @@
     // Get raw posted data
     $data = json_decode(file_get_contents("php://input"));
 
-    $category->category = $data->category;
+
+    //Specify required columns
+    $required_fields = ['category'];
+
+    $missing_fields = [];
+
+    //Check for missing data
+    foreach ($required_fields as $field) {
+        if (empty($data[$field])) {
+            $missing_fields[] = $field;
+        }
+    }
+
+    if (!empty($missing_fields)) {
+        echo json_encode([
+            "message" => "Missing Required Parameters",
+        ]);
+        exit;
+    }
+
+    $author->category = $data['category'];
+
 
     $category->create();
 
