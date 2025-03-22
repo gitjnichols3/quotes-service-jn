@@ -20,7 +20,7 @@
     $data = json_decode(file_get_contents("php://input"), true);
 
     //Specify required columns
-    $required_fields = ['author'];
+    $required_fields = ['id', 'author'];
 
     $missing_fields = [];
 

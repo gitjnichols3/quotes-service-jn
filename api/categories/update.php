@@ -21,7 +21,7 @@
 
 
     //Specify required columns
-    $required_fields = ['category'];
+    $required_fields = ['id', 'category'];
 
     $missing_fields = [];
 
