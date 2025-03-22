@@ -109,9 +109,19 @@
             } catch (PDOException $e) {
                 // Check for foreign key violation (SQLSTATE 23503)
                 if ($e->getCode() == '23503') {
-                    echo json_encode([
-                        "message" => "author_id Not Found"
-                    ]);
+
+                    //copy error into variable
+                    $errorMessage = $e->getMessage();
+
+                    //test variable to see which foregin key was violated
+                    if (strpos($errorMessage, 'quotes_author_id_fkey') !== false) {
+                        echo json_encode(["message" => "author_id Not Found"]);
+                    } else if (strpos($errorMessage, 'quotes_category_id_fkey') !== false) {
+                        echo json_encode(["message" => "category_id Not Found"]);
+                    } else {
+                            echo json_encode(["message" => "Foreign key constraint violated"]);
+                    }
+
                     exit;
                 } else {
                     // General database error
