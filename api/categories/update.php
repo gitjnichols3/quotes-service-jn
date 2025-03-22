@@ -39,6 +39,7 @@
         exit;
     }
 
+    $category->id = $data['id'];
     $category->category = $data['category'];
 
 

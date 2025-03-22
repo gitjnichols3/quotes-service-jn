@@ -38,7 +38,7 @@
         exit;
     }
 
-
+    $author->id = $data['id'];
     $author->author = $data['author'];
 
 /*     // Get raw posted data
