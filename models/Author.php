@@ -100,7 +100,10 @@
             SET
                 author = :author
             WHERE
-                id = :id';
+                id = :id
+            RETURNING
+                id,
+                author';
 
         //Prepare statement
         $stmt = $this->conn->prepare($query);
@@ -113,6 +116,22 @@
         $stmt->bindParam(':author', $this->author);
         $stmt->bindParam(':id', $this->id);
 
+        // Execute query
+        
+            if ($stmt->execute()) {
+                $newRecord = $stmt->fetch(PDO::FETCH_ASSOC);
+                echo json_encode($newRecord, JSON_PRETTY_PRINT);
+                return true;
+            }
+        
+
+        // Print error
+        printf("Error: %s.\n", $stmt->errorInfo()[2]);
+
+        return false;
+    }
+
+/*
         //Execute query
         if($stmt->execute()){
             return true;
@@ -122,7 +141,7 @@
 
         return false;
         }
-
+*/
 
 
         //Delete Author

@@ -99,7 +99,10 @@
             SET
                 category = :category
             WHERE
-                id = :id';
+                id = :id
+            RETURNING
+                id,
+                category';
 
         //Prepare statement
         $stmt = $this->conn->prepare($query);
@@ -112,10 +115,15 @@
         $stmt->bindParam(':category', $this->category);
         $stmt->bindParam(':id', $this->id);
 
-        //Execute query
-        if($stmt->execute()){
+
+        // Execute query
+
+        if ($stmt->execute()) {
+            $newRecord = $stmt->fetch(PDO::FETCH_ASSOC);
+            echo json_encode($newRecord, JSON_PRETTY_PRINT);
             return true;
         }
+
         //Print error
         printf("Error: %s.\n", $stmt->error);
 
