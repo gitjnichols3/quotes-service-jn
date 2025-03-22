@@ -15,12 +15,38 @@
     // Instantiate author object
     $author = new Author($db);
 
+    
     // Get raw posted data
+    $data = json_decode(file_get_contents("php://input"), true);
+
+    //Specify required columns
+    $required_fields = ['author'];
+
+    $missing_fields = [];
+
+    //Check for missing data
+    foreach ($required_fields as $field) {
+        if (empty($data[$field])) {
+            $missing_fields[] = $field;
+        }
+    }
+
+    if (!empty($missing_fields)) {
+        echo json_encode([
+            "message" => "Missing Required Parameters",
+        ]);
+        exit;
+    }
+
+
+    $author->author = $data['author'];
+
+/*     // Get raw posted data
     $data = json_decode(file_get_contents("php://input"));
 
     // Set ID to update
     $author->id = $data->id;
-    $author->author = $data->author;
+    $author->author = $data->author; */
 
     $author->update();
 

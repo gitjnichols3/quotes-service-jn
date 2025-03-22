@@ -15,14 +15,44 @@
     // Instantiate category object
     $category = new Category($db);
 
+
     // Get raw posted data
+    $data = json_decode(file_get_contents("php://input"), true);
+
+
+    //Specify required columns
+    $required_fields = ['category'];
+
+    $missing_fields = [];
+
+    //Check for missing data
+    foreach ($required_fields as $field) {
+        if (empty($data[$field])) {
+            $missing_fields[] = $field;
+        }
+    }
+
+    if (!empty($missing_fields)) {
+        echo json_encode([
+            "message" => "Missing Required Parameters",
+        ]);
+        exit;
+    }
+
+    $category->category = $data['category'];
+
+
+    $category->update();
+
+
+/*     // Get raw posted data
     $data = json_decode(file_get_contents("php://input"));
 
     // Set ID to update
     $category->id = $data->id;
     $category->category = $data->category;
 
-    $category->update();
+    $category->update(); */
 /*
     // update category
     if($category->update()) {
