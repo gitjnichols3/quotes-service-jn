@@ -20,6 +20,9 @@
 
     $author->author = $data->author;
 
+    $author->create();
+
+    /*
     // Create Author
     if($author->create()) {
         echo json_encode(
@@ -30,4 +33,6 @@
             array('message' => 'Author Not Created')
         );
     }
+
+    */
     
