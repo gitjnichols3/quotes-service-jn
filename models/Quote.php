@@ -80,6 +80,39 @@
 
        // Create Quote 
 
+
+       public function create($quote, $author_id, $category_id) {
+        // Sanitize input
+        $quote = strip_tags($quote ?? ''); // Handle null with default empty string
+        
+        // Validate inputs
+        if (!is_numeric($author_id) || !is_numeric($category_id)) {
+            throw new Exception('Invalid author_id or category_id');
+        }
+
+        try {
+            $stmt = $this->pdo->prepare(
+                "INSERT INTO quotes (quote, author_id, category_id) 
+                 VALUES (:quote, :author_id, :category_id) 
+                 RETURNING id, quote, author_id, category_id"
+            );
+
+            $stmt->execute([
+                ':quote' => $quote,
+                ':author_id' => $author_id,
+                ':category_id' => $category_id
+            ]);
+
+            return $stmt->fetch(PDO::FETCH_ASSOC);
+
+        } catch (PDOException $e) {
+            throw new Exception('Database error: ' . $e->getMessage());
+        }
+    }
+
+
+
+/*
         public function create() {
             // PostgreSQL-compatible INSERT query
             $query = 'INSERT INTO ' . $this->table . ' (quote, author_id, category_id) 
@@ -114,7 +147,7 @@
             return false;
         }
 
-
+*/
 
 
         //Update Quote
