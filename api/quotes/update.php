@@ -45,7 +45,7 @@
 
     
     // **Check if the quote record exists before attempting to update**
-    $checkQuery = 'SELECT id FROM ' . $quote->table . ' WHERE id = :id LIMIT 1';
+    $checkQuery = 'SELECT id FROM quotes WHERE id = :id LIMIT 1';
     $stmt = $db->prepare($checkQuery);
     $stmt->bindParam(':id', $quote->id, PDO::PARAM_INT);
     $stmt->execute();
