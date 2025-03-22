@@ -20,6 +20,10 @@
 
     $category->category = $data->category;
 
+    $category->create();
+
+    /*
+
     // Create Category
     if($category->create()) {
         echo json_encode(
@@ -31,3 +35,4 @@
         );
     }
     
+    */

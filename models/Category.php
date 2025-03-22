@@ -63,7 +63,8 @@
         public function create() {
             // PostgreSQL-compatible INSERT query
             $query = 'INSERT INTO ' . $this->table . ' (category) 
-                    VALUES (:category)';
+                    VALUES (:category)
+                    RETURNING id, category';
 
             // Prepare statement
             $stmt = $this->conn->prepare($query);
@@ -76,6 +77,8 @@
 
             // Execute query
             if ($stmt->execute()) {
+                $newRecord = $stmt->fetch(PDO::FETCH_ASSOC);
+                echo json_encode($newRecord, JSON_PRETTY_PRINT);
                 return true;
             }
 
