@@ -235,6 +235,8 @@
 
         //Delete Quote
         public function delete() {
+
+            
             //Create query
             $query = 'DELETE FROM ' . $this->table . ' WHERE id = :id';
 
