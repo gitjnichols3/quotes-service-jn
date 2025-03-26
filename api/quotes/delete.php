@@ -21,6 +21,19 @@
     // Set ID to update
     $quote->id = $data->id;
 
+    // **Check if the quote record exists before attempting to update**
+    $checkQuery = 'SELECT id FROM quotes WHERE id = :id LIMIT 1';
+    $stmt = $db->prepare($checkQuery);
+    $stmt->bindParam(':id', $quote->id, PDO::PARAM_INT);
+    $stmt->execute();
+
+    // If the record does not exist, return a "Record not found" message
+    if ($stmt->rowCount() == 0) {
+        echo json_encode([
+            'message' => 'No Quotes Found'
+        ]);
+        exit; // Stop execution as the record does not exist
+    }
 
     // Delete quote
     if($quote->delete()) {
