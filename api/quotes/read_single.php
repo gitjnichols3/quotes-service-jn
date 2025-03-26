@@ -34,9 +34,7 @@
             $quote_item = array(
                 'id' => $id,
                 'quote' => $quote,
-               // 'author_id' => $author_id,
                 'author' => $author,
-              //  'category_id' => $category_id,
                 'category' => $category
             );
 

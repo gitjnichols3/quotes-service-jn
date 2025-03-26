@@ -23,9 +23,10 @@
     //Specify required columns
     $required_fields = ['id', 'category'];
 
-    $missing_fields = [];
 
     //Check for missing data
+    $missing_fields = [];
+    
     foreach ($required_fields as $field) {
         if (empty($data[$field])) {
             $missing_fields[] = $field;
@@ -39,30 +40,7 @@
         exit;
     }
 
+    // Set object values and run update method
     $category->id = $data['id'];
     $category->category = $data['category'];
-
-
     $category->update();
-
-
-/*     // Get raw posted data
-    $data = json_decode(file_get_contents("php://input"));
-
-    // Set ID to update
-    $category->id = $data->id;
-    $category->category = $data->category;
-
-    $category->update(); */
-/*
-    // update category
-    if($category->update()) {
-        echo json_encode(
-            array('message' => 'Category Updated')
-        );
-    } else {
-        echo json_encode(
-            array('message' => 'Category Not Updated')
-        );
-    }
-*/

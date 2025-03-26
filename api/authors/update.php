@@ -22,9 +22,10 @@
     //Specify required columns
     $required_fields = ['id', 'author'];
 
+    //Check for missing data
     $missing_fields = [];
 
-    //Check for missing data
+    
     foreach ($required_fields as $field) {
         if (empty($data[$field])) {
             $missing_fields[] = $field;
@@ -38,28 +39,9 @@
         exit;
     }
 
+    //set object values and run update function
     $author->id = $data['id'];
     $author->author = $data['author'];
 
-/*     // Get raw posted data
-    $data = json_decode(file_get_contents("php://input"));
-
-    // Set ID to update
-    $author->id = $data->id;
-    $author->author = $data->author; */
-
     $author->update();
 
-    /*
-    // update author
-    if($author->update()) {
-        echo json_encode(
-            array('message' => 'Author Updated')
-        );
-    } else {
-        echo json_encode(
-            array('message' => 'Author Not Updated')
-        );
-    }
-    
-*/

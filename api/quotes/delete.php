@@ -43,6 +43,7 @@
             )
         );
     } else {
+        //Not deleted
         echo json_encode(
             array('message' => 'Quote Not Deleted')
         );

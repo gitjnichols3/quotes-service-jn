@@ -22,9 +22,9 @@
     //Specify required columns
     $required_fields = ['id', 'quote', 'author_id', 'category_id'];
 
+    //Check for missing data
     $missing_fields = [];
 
-    //Check for missing data
     foreach ($required_fields as $field) {
         if (empty($data[$field])) {
             $missing_fields[] = $field;
@@ -38,6 +38,7 @@
         exit;
     }
 
+    //set object values
     $quote->id = $data['id'];
     $quote->quote = $data['quote'];
     $quote->author_id = $data['author_id'];
@@ -58,33 +59,5 @@
         exit; // Stop execution as the record does not exist
     }
 
-
-
-/*
-    // Get raw posted data
-    $data = json_decode(file_get_contents("php://input"));
-
-    // Set ID to update
-    $quote->id = $data->id;
-
-    $quote->quote = $data->quote;
-    $quote->author_id = $data->author_id;
-    $quote->category_id = $data->category_id;
-*/
-
+    //Run update method
     $quote->update();
-
-    /*
-    // update quote
-    if($quote->update()) {
-        echo json_encode(
-            array('message' => 'Quote Updated')
-        );
-    } else {
-        echo json_encode(
-            array('message' => 'Quote Not Updated')
-        );
-    }
-
-    */
-    

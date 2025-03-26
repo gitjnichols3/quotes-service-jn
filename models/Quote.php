@@ -215,30 +215,14 @@
         return false;
     }
 
-        /*
-        //Execute query
-        if($stmt->execute()){
-            return true;
-        }
-        //Print error
-        printf("Error: %s.\n", $stmt->error);
-
-        return false;
-        }
-
-        */
-
-
-
-
 
 
         //Delete Quote
         public function delete() {
 
             
-            //Create query
-            $query = 'DELETE FROM ' . $this->table . ' WHERE id = :id';
+        //Create query
+        $query = 'DELETE FROM ' . $this->table . ' WHERE id = :id';
 
         //Prepare statement
         $stmt = $this->conn->prepare($query);

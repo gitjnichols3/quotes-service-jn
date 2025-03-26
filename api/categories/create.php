@@ -22,9 +22,10 @@
     //Specify required columns
     $required_fields = ['category'];
 
-    $missing_fields = [];
 
     //Check for missing data
+    $missing_fields = [];
+
     foreach ($required_fields as $field) {
         if (empty($data[$field])) {
             $missing_fields[] = $field;
@@ -38,22 +39,7 @@
         exit;
     }
 
+    //set object value and run create function
     $category->category = $data['category'];
-
-
     $category->create();
 
-    /*
-
-    // Create Category
-    if($category->create()) {
-        echo json_encode(
-            array('message' => 'Category Created')
-        );
-    } else {
-        echo json_encode(
-            array('message' => 'Category Not Created')
-        );
-    }
-    
-    */

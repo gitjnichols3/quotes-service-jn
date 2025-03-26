@@ -25,15 +25,5 @@
     $category->delete();
 
 
-/* // Delete post
-if($category->delete()) {
-    echo json_encode(
-        array('message' => 'Category Deleted')
-    );
-  } else {
-    echo json_encode(
-        array('message' => 'Category Not Deleted')
-    );
-}  */
 
     

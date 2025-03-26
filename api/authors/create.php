@@ -21,9 +21,9 @@
     //Specify required columns
     $required_fields = ['author'];
 
+    //Check for missing data
     $missing_fields = [];
 
-    //Check for missing data
     foreach ($required_fields as $field) {
         if (empty($data[$field])) {
             $missing_fields[] = $field;
@@ -42,17 +42,5 @@
 
     $author->create();
 
-    /*
-    // Create Author
-    if($author->create()) {
-        echo json_encode(
-            array('message' => 'Author Created')
-        );
-    } else {
-        echo json_encode(
-            array('message' => 'Author Not Created')
-        );
-    }
 
-    */
     

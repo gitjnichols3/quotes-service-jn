@@ -25,17 +25,5 @@
     // Delete post
     $author->delete();
 
-// Delete post
-/*       if($author->delete()) {
-        echo json_encode(
-            array('message' => 'Author Deleted')
-        );
-
-    } else {
-        echo json_encode(
-            array('message' => 'Author Not Deleted')
-        );
-    }  */
-
 
     

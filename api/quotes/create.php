@@ -21,9 +21,10 @@
     //Specify required columns
     $required_fields = ['quote', 'author_id', 'category_id'];
 
-    $missing_fields = [];
 
     //Check for missing data
+    $missing_fields = [];
+
     foreach ($required_fields as $field) {
         if (empty($data[$field])) {
             $missing_fields[] = $field;
@@ -37,22 +38,9 @@
         exit;
     }
 
-    
+    //Set object values and run create method
     $quote->quote = $data['quote'];
     $quote->author_id = $data['author_id'];
     $quote->category_id = $data['category_id'];
 
     $quote->create();
-/*
-    // Create quote
-    if($quote->create()) {
-        echo json_encode(
-            array('message' => 'Quote Created')
-        );
-    } else {
-        echo json_encode(
-            array('message' => 'Quote Not Created')
-        );
-    }
-    
-*/

@@ -131,18 +131,6 @@
         return false;
     }
 
-/*
-        //Execute query
-        if($stmt->execute()){
-            return true;
-        }
-        //Print error
-        printf("Error: %s.\n", $stmt->error);
-
-        return false;
-        }
-*/
-
 
         //Delete Author
 
