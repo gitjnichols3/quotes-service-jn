@@ -150,7 +150,9 @@
 
         try {
             //Create query
-            $query = 'DELETE FROM ' . $this->table . ' WHERE id = :id';
+            $query = 'DELETE FROM ' . $this->table . ' WHERE id = :id,
+            RETURNING
+                id';
     
             //Prepare statement
             $stmt = $this->conn->prepare($query);
@@ -166,11 +168,8 @@
 
             if ($stmt->rowCount() > 0) {
                // echo json_encode(["success" => true, "message" => "Record deleted successfully."]);
-               echo json_encode(
-                array(
-                'id' => $author->id   
-                )
-            );
+               $newRecord = $stmt->fetch(PDO::FETCH_ASSOC);
+               echo json_encode($newRecord, JSON_PRETTY_PRINT);
                 
             } else {
                 echo json_encode(["error" => "Error deleting record:", "message" => "No record found with the provided ID."]);
