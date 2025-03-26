@@ -166,7 +166,11 @@
 
             if ($stmt->rowCount() > 0) {
                // echo json_encode(["success" => true, "message" => "Record deleted successfully."]);
-                echo json_encode(["id" => $author->id]);
+               echo json_encode(
+                array(
+                'id' => $author->id   
+                )
+            );
                 
             } else {
                 echo json_encode(["error" => "Error deleting record:", "message" => "No record found with the provided ID."]);
