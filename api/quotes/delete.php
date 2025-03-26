@@ -26,7 +26,7 @@
     if($quote->delete()) {
         echo json_encode(
             array('message' => 'Quote Deleted',
-            'key' => $quote->id   
+            'id' => $quote->id   
             )
         );
     } else {
