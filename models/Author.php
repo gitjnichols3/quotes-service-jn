@@ -150,7 +150,7 @@
 
         try {
             //Create query
-            $query = 'DELETE FROM ' . $this->table . ' WHERE id = :id,
+            $query = 'DELETE FROM ' . $this->table . ' WHERE id = :id
             RETURNING
                 id';
     
